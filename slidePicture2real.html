@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+    <title>Image SlideShow</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+
+            <img src="1.jpg" id="image_slide">
+        </div>
+        <span id="prev">
+            <<< </span>
+                <span id="pos1">
+                    . </span>
+                <span id="pos2">
+                    . </span>
+                <span id="pos3">
+                    . </span>
+                <span id="pos4">
+                    . </span>
+                <span id="pos5">
+                    . </span>
+                <span id="next"> >>> </span>
+    </div>
+    <div>
+        <h1>Thomas Urge</h1>
+        <a href="#">
+            <p id="linker">Contact Us</p>
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('image_slide').src = "1.jpg";
+        let slide = document.getElementById("next").addEventListener("click", next);
+        let slide2 = document.getElementById("prev").addEventListener("click", previous);
+
+        let pos1 = document.getElementById("pos1").addEventListener("click", poses);
+        document.getElementById("pos1").addEventListener("click", ColorDot);
+
+        let pos2 = document.getElementById("pos2").addEventListener("click", poses);
+        document.getElementById("pos2").addEventListener("click", ColorDot);
+
+        let pos3 = document.getElementById("pos3").addEventListener("click", poses);
+        document.getElementById("pos3").addEventListener("click", ColorDot);
+
+        let pos4 = document.getElementById("pos4").addEventListener("click", poses);
+        document.getElementById("pos4").addEventListener("click", ColorDot);
+
+        let pos5 = document.getElementById("pos5").addEventListener("click", poses);
+        document.getElementById("pos5").addEventListener("click", ColorDot);
+
+        let image_click = document.getElementById("image_slide").addEventListener("click", next);
+
+        let imageVal = 0;
+        let pointer = 1;
+
+        function poses(e) {
+            if (e.target.id == "pos1") {
+                console.log(e.target.id);
+                document.getElementById('image_slide').src = "1.jpg";
+                document.getElementById("pos1").style.color = "white";
+            } else if (e.target.id == "pos2") {
+                console.log(e.target.id);
+                document.getElementById('image_slide').src = "2.jpg";
+                document.getElementById("pos2").style.color = "white";
+            } else if (e.target.id == "pos3") {
+                console.log(e.target.id);
+                document.getElementById('image_slide').src = "3.jpg";
+                document.getElementById("pos3").style.color = "white";
+            } else if (e.target.id == "pos4") {
+                console.log(e.target.id);
+                document.getElementById('image_slide').src = "4.jpg";
+                document.getElementById("pos4").style.color = "white";
+            } else if (e.target.id == "pos5") {
+                console.log(e.target.id);
+                document.getElementById('image_slide').src = "5.jpg";
+                document.getElementById("pos5").style.color = "white";
+            } else {
+                console.log("cant ever exec");
+            }
+        }
+
+        function next() {
+            if (imageVal < 5) {
+                imageVal++;
+                document.getElementById('image_slide').src = imageVal + ".jpg";
+                let pos = "pos" + imageVal;
+                ColorDot_2(pos);
+            } else {
+                document.getElementById('image_slide').src = "1.jpg";
+                imageVal = 1
+                pos = "pos" + imageVal;
+                ColorDot_2(pos);
+            }
+        }
+        function previous() {
+            if (imageVal > 1) {
+                imageVal--;
+                document.getElementById('image_slide').src = imageVal + ".jpg";
+                let pos = "pos" + imageVal;
+                ColorDot_2(pos);
+
+            } else {
+                document.getElementById('image_slide').src = "1.jpg";
+                imageVal = 6;
+                let pos = "pos" + imageVal;
+                ColorDot_2(pos);
+            }
+        }
+
+        function ColorDot(e) {
+            let ids = e.target.id
+            document.getElementById("pos1").style.color = "gray";
+            document.getElementById("pos2").style.color = "gray";
+            document.getElementById("pos3").style.color = "gray";
+            document.getElementById("pos4").style.color = "gray";
+            document.getElementById("pos5").style.color = "gray";
+            document.getElementById(ids).style.color = "red";
+        }
+
+        function ColorDot_2(pos) {
+            let ids = pos;
+            document.getElementById("pos1").style.color = "gray";
+            document.getElementById("pos2").style.color = "gray";
+            document.getElementById("pos3").style.color = "gray";
+            document.getElementById("pos4").style.color = "gray";
+            document.getElementById("pos5").style.color = "gray";
+            document.getElementById(ids).style.color = "red";
+        }
+    </script>
+
+    <style>
+        body,
+        html {
+            margin: 0px;
+            background-color: black;
+            color: blanchedalmond;
+            text-align: center;
+        }
+
+        div img {
+            margin-top: 0;
+            width: 100%;
+
+            height: 250px;
+            z-index: -1;
+            margin-bottom: 0px;
+        }
+
+        #prev {
+            padding-top: 0px;
+            margin-top: 0;
+            margin-left: 20px;
+            float: left;
+            z-index: 1;
+            font-size: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            opacity: 0.4;
+        }
+
+        #next:hover,
+        #prev:hover {
+            color: red;
+            opacity: 1;
+        }
+
+        #next {
+            padding-top: 10px;
+            margin-top: 0;
+            margin-right: 20px;
+            float: right;
+            z-index: 1;
+            font-size: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            opacity: 0.4;
+        }
+
+        #pos1,
+        #pos2,
+        #pos3,
+        #pos4,
+        #pos5 {
+            padding-top: 0px;
+            margin-top: 0;
+            cursor: pointer;
+            z-index: 1;
+            font-size: 50px;
+            font-weight: 600;
+            color: gray;
+            opacity: 0.4;
+        }
+
+        #pos1:hover,
+        #pos2:hover,
+        #pos3:hover,
+        #pos4:hover,
+        #pos5:hover {
+            opacity: 1;
+            color: red;
+            font-size: 55px;
+            font-weight: 600;
+        }
+
+        #linker {
+
+            margin-top: 2px;
+            display: inline-block;
+            color: white;
+            background-color: green;
+            padding: 5px 10px;
+        }
+    </style>
+</body>
+
+</html>
